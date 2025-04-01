@@ -1,34 +1,30 @@
--- Bootstrap lazy.nvim
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+if not vim.fn.isdirectory(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- Color Theme: Nord
-  { "shaunsingh/nord.nvim" }, -- nord
+  -- Color Themes
   { "projekt0n/github-nvim-theme" }, -- github
   { "joshdick/onedark.vim" }, -- onedark
   { "sts10/vim-pink-moon" }, -- pink-moon
+
   -- Statusline: Airline
+
   {
-  " vim-airline/vim-airline",
+    "vim-airline/vim-airline",
     dependencies = { "vim-airline/vim-airline-themes", "tpope/vim-fugitive" },
     config = function()
       vim.g["airline#extensions#branch#enabled"] = 1
     end
   },
+
 
   -- Auto-close pairs
   {
@@ -89,15 +85,32 @@ require("lazy").setup({
   -- Fuzzy Finder: Telescope
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim" -- Add dependency for find & replace
+    },
     config = function()
-      require("telescope").setup({
+      local telescope = require("telescope")
+      local builtin = require("telescope.builtin")
+      local lga_actions = require("telescope-live-grep-args.actions") -- For find & replace
+
+      telescope.setup({
         pickers = {
           find_files = { hidden = true, no_ignore = true }
+        },
+        extensions = {
+          live_grep_args = {
+            mappings = {
+              i = { ["<C-r>"] = lga_actions.quote_prompt() }, -- Enables find & replace
+            }
+          }
         }
       })
 
-      local builtin = require("telescope.builtin")
+      -- Load live_grep_args extension
+      telescope.load_extension("live_grep_args")
+
+      -- Keybindings
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
@@ -133,7 +146,6 @@ require("lazy").setup({
     end
   },
 
-  
   {
     "NeogitOrg/neogit",
     dependencies = {
@@ -145,6 +157,6 @@ require("lazy").setup({
   },
 
   -- Comments
-  { 'numToStr/Comment.nvim', },
+  { 'numToStr/Comment.nvim', }
 })
 
