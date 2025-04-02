@@ -14,7 +14,12 @@ require("lazy").setup({
   { "projekt0n/github-nvim-theme" }, -- github
   { "joshdick/onedark.vim" }, -- onedark
   { "sts10/vim-pink-moon" }, -- pink-moon
-
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   -- Statusline: Airline
 
   {
@@ -157,6 +162,9 @@ require("lazy").setup({
   },
 
   -- Comments
-  { 'numToStr/Comment.nvim', }
+  { 'numToStr/Comment.nvim', },
+
+  -- rainbowcsv
+  { 'mechatroner/rainbow_csv' },
 })
 
