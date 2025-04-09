@@ -166,5 +166,30 @@ require("lazy").setup({
 
   -- rainbowcsv
   { 'mechatroner/rainbow_csv' },
+
+  -- code folding
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
+    event = "BufReadPost",
+    config = function()
+      -- Set fold settings
+      vim.o.foldcolumn = "1"         -- Show fold column
+      vim.o.foldlevel = 99           -- Use high foldlevel to keep folds open
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true        -- Enable folding
+
+      -- Setup nvim-ufo
+      require("ufo").setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return { "lsp", "indent" }
+        end,
+      })
+
+      -- Optional keymaps
+      vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+      vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
+    end,
+  },
 })
 
