@@ -25,14 +25,14 @@ vim.keymap.set('n', '<M-Left>', ':vertical resize -2<CR>', opts)
 vim.keymap.set('n', '<M-Right>', ':vertical resize +2<CR>', opts)
 
 -- NeoTree Open
-vim.keymap.set('n', '<C-b>', ':Neotree toggle right<CR>', opts)
+vim.keymap.set('n', '<C-b>', ':Neotree reveal_force_cwd toggle right<CR>', opts)
 
 -- Buffers
 vim.keymap.set('n', '<leader>bs', ':w<CR>', opts) -- Save buffer
 vim.keymap.set('n', '<leader>bk', ':bd<CR>', opts) -- Close buffer
 
 -- Tabs
-vim.keymap.set('n', '<leader><Tab>', ':bnext<CR>', opts)
+-- vim.keymap.set('n', '<leader><Tab>', ':bnext<CR>', opts)
 
 -- Splits
 vim.keymap.set("n", "<leader>ws", ":split<CR>", { desc = "Horizontal Split" })
@@ -46,6 +46,10 @@ vim.keymap.set("n", "<D-Right>", "$", opts)  -- Command + Right: Move to end of 
 vim.keymap.set("n", "<D-Left>", "0", opts)   -- Command + Left: Move to beginning of line
 vim.keymap.set("n", "<D-Up>", "gg", opts)    -- Command + Up: Move to beginning of file
 vim.keymap.set("n", "<D-Down>", "G", opts)   -- Command + Down: Move to end of file
+
+-- quickfix
+vim.keymap.set("n", "<D-j>", ":cn<CR>", opts)
+vim.keymap.set("n", "<D-k>", ":cp<CR>", opts)
 
 -----------------
 -- Visual mode --

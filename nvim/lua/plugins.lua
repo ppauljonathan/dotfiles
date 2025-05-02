@@ -48,6 +48,7 @@ require("lazy").setup({
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
+
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
@@ -60,6 +61,7 @@ require("lazy").setup({
         default_component_configs = {
           indent = { padding = 1 },
         },
+        reveal = true,
         filesystem = {
           filtered_items = {
             visible = true, -- Show hidden files
@@ -71,21 +73,21 @@ require("lazy").setup({
     end
   },
   -- Tabline
-  {
-    "romgrk/barbar.nvim",
-    dependencies = {
-      "lewis6991/gitsigns.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    init = function() vim.g.barbar_auto_setup = false end,
-    config = function()
-      require("barbar").setup({
-        animation = false,
-        auto_hide = 0,
-      })
-    end,
-    version = "^1.0.0",
-  },
+  -- {
+  --   "romgrk/barbar.nvim",
+  --   dependencies = {
+  --     "lewis6991/gitsigns.nvim",
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  --   init = function() vim.g.barbar_auto_setup = false end,
+  --   config = function()
+  --     require("barbar").setup({
+  --       animation = false,
+  --       auto_hide = 0,
+  --     })
+  --   end,
+  --   version = "^1.0.0",
+  -- },
 
   -- Fuzzy Finder: Telescope
   {
@@ -147,7 +149,9 @@ require("lazy").setup({
   {
     "lewis6991/gitsigns.nvim",
     config = function ()
-      require('gitsigns').setup()
+      require('gitsigns').setup({
+        current_line_blame = true
+      })
     end
   },
 

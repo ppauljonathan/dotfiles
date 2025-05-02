@@ -32,5 +32,5 @@ vim.g.NERDTreeShowHidden = 1
 vim.g.editorconfig = true
 
 -- vim-airline
-vim.g.airline_section_c = '%{getcwd()}'
+vim.g.airline_section_c = '%{getcwd()} > %{expand("%:t")}'
 
