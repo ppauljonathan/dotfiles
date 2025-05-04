@@ -43,7 +43,7 @@ vim.keymap.set("n", "<leader>wc", ":close<CR>", { desc = "Close Split" })
 vim.keymap.set("n", "<M-Right>", "w", opts)  -- Option + Right: Move forward by word
 vim.keymap.set("n", "<M-Left>", "b", opts)   -- Option + Left: Move backward by word
 vim.keymap.set("n", "<D-Right>", "$", opts)  -- Command + Right: Move to end of line
-vim.keymap.set("n", "<D-Left>", "0", opts)   -- Command + Left: Move to beginning of line
+vim.keymap.set("n", "<D-Left>", "^", opts)   -- Command + Left: Move to beginning of line
 vim.keymap.set("n", "<D-Up>", "gg", opts)    -- Command + Up: Move to beginning of file
 vim.keymap.set("n", "<D-Down>", "G", opts)   -- Command + Down: Move to end of file
 
@@ -64,7 +64,7 @@ vim.keymap.set('v', '>', '>gv', opts)
 vim.keymap.set("v", "<M-Right>", "w", opts)  -- Option + Right: Move forward by word
 vim.keymap.set("v", "<M-Left>", "b", opts)   -- Option + Left: Move backward by word
 vim.keymap.set("v", "<D-Right>", "$", opts)  -- Command + Right: Move to end of line
-vim.keymap.set("v", "<D-Left>", "0", opts)   -- Command + Left: Move to beginning of line
+vim.keymap.set("v", "<D-Left>", "^", opts)   -- Command + Left: Move to beginning of line
 vim.keymap.set("v", "<D-Up>", "gg", opts)    -- Command + Up: Move to beginning of file
 vim.keymap.set("v", "<D-Down>", "G", opts)   -- Command + Down: Move to end of file
 
@@ -75,6 +75,6 @@ vim.keymap.set("v", "<D-Down>", "G", opts)   -- Command + Down: Move to end of f
 vim.keymap.set("i", "<M-Right>", "<C-o>w", opts)  -- Option + Right: Move forward by word
 vim.keymap.set("i", "<M-Left>", "<C-o>b", opts)   -- Option + Left: Move backward by word
 vim.keymap.set("i", "<D-Right>", "<C-o>$", opts)  -- Command + Right: Move to end of line
-vim.keymap.set("i", "<D-Left>", "<C-o>0", opts)   -- Command + Left: Move to beginning of line
+vim.keymap.set("i", "<D-Left>", "<C-o>^", opts)   -- Command + Left: Move to beginning of line
 vim.keymap.set("i", "<D-Up>", "<C-o>gg", opts)   -- Command + Up: Move to the beginning of the file
 vim.keymap.set("i", "<D-Down>", "<C-o>G", opts)  -- Command + Down: Move to the end of the file
